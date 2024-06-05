@@ -5,6 +5,17 @@
       "password": "$2a$10$F2JYle1gmTcGfL2fGmiQ1utFtbzmVfaonS4rgtH881.oCTR.SEv72",
       "nome": "admin",
       "id": 1
+    },
+    {
+      "email": "admin1@admin1.com",
+      "password": "$2a$10$as9D9S3ctA.TjB/S8IzftOAtjXN0n76Uz4eITJBd7o/Gt4U2B3GHS",
+      "id": 2
+    },
+    {
+      "email": "admin2@admin2.com",
+      "password": "$2a$10$YRFXCJclQVFfFsmncd9qv.fpSruJWghEYIPJ6aNhjm1XmKtVkt/5e",
+      "nome": "admin2",
+      "id": 3
     }
   ]
 }
