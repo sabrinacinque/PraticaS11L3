@@ -3,8 +3,15 @@
 <h3>Benvenuto {{ user.nome }}, {{ user.email }}, {{ user.id }}</h3>
 
 <h3>Questa è la lista degli altri utenti</h3>
-<ul *ngFor="let user of users">
-  <li>{{ user.nome }}</li>
-  <li>{{ user.email }}</li>
-  <li>{{ user.id }}</li>
-</ul>
+<div class="row">
+
+    <div *ngFor="let user of users" class="col-4 card mb-5">
+      <div class="card-body">
+        <h5 class="card-title">{{ user.nome }}</h5>
+        <p class="card-text">{{ user.email }}</p>
+        <p class="card-text">ID: {{ user.id }}</p>
+      </div>
+    </div>
+
+</div>
+
