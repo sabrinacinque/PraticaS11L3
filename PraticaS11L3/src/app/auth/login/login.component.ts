@@ -23,6 +23,7 @@ export class LoginComponent {
   login(){
     this.authSvc.login(this.authData)
     .subscribe(()=>{
+      alert("login avvenuto con successo")
       this.router.navigate(['/dashboard'])
     })
   }

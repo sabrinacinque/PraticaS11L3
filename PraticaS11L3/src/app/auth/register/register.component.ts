@@ -1,22 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { iUser } from '../../Models/i-user';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router'; // Importa Router
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrls: ['./register.component.scss'] // Usa styleUrls invece di styleUrl
 })
 export class RegisterComponent {
 
-  newUser:Partial<iUser> = {}
+  newUser: Partial<iUser> = {}
 
-  constructor(private authSvc:AuthService){}
+  @ViewChild('registerForm') registerForm: NgForm | null = null;
 
-  register(){
-    this.authSvc.register(this.newUser).subscribe(()=>{
-      //avviso o redireziono l'utente
-    })
+  constructor(private authSvc: AuthService, private router: Router) {} // Inietta Router
+
+  register() {
+    this.authSvc.register(this.newUser).subscribe(() => {
+      alert("Registrazione avvenuta con successo");
+
+      if (this.registerForm) {
+        this.registerForm.resetForm(); // Pulisce il form
+      }
+
+      this.router.navigate(['']); // Reindirizza alla home
+    });
   }
 
 }

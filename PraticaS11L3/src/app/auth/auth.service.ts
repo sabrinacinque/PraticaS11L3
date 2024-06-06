@@ -45,6 +45,7 @@ export class AuthService {
   //Metodo che effettua la chiamata per la registrazione. Invieremo un utente parziale poiché è il backend a definire l'id dello user.
   register(newUser:Partial<iUser>):Observable<iAuthResponse>{
     return this.http.post<iAuthResponse>(this.registerUrl,newUser)
+    
     //È necessario indicare che questa chiamata restituirà un oggetto di tipo iAuthResponse, altrimenti i componenti non potranno gestire correttamente le risposte
   }
 
@@ -54,7 +55,7 @@ export class AuthService {
     return this.http.post<iAuthResponse>(this.loginUrl, authData)
     .pipe(tap(data=>{//Tap esegue un'operazione generica ogni volta che i dati transitano all'interno di pipe
 
-      this.authSubject.next(data.user)//Una volta che l'utente è loggato, comunicò i suoi dati al subject.
+      this.authSubject.next(data.user)//Una volta che l'utente è loggato, comunico i suoi dati al subject.
       localStorage.setItem('accessData',JSON.stringify(data))//A questo punto, salvo anche i dati all'interno del local storage In modo da poterli recuperare in altri momenti
 
       this.autoLogout()//Nel momento in cui l'utente è loggato devo già prevedere il momento in cui verrà estromesso a causa della scadenza della sessione
@@ -67,6 +68,7 @@ export class AuthService {
 
     this.authSubject.next(null)//Invio un dato null al subject.
     localStorage.removeItem('accessData')//Rimuovo i dati dell'utente dal local storage.
+    alert("utente sloggato")
 
     this.router.navigate(['/auth/login'])//Sposto l'utente alla pagina di login
 
