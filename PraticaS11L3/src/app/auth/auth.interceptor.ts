@@ -7,23 +7,29 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  jwtHelper: JwtHelperService = new JwtHelperService();
 
-  constructor(private authSvc:AuthService) {}
+  constructor(private authSvc: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const accessData = this.authSvc.getAccessData();
+    console.log('Access Data:', accessData);
 
-    const accessData = this.authSvc.getAccessData()
-    if(!accessData) return next.handle(request);
-
+    if (!accessData || this.jwtHelper.isTokenExpired(accessData.accessToken)) {
+      console.log('Token is invalid or expired');
+      return next.handle(request);
+    }
 
     const newReq = request.clone({
-      headers: request.headers.append('Authorization', `Bearer ${accessData.accessToken}`)
-    })
+      headers: request.headers.set('Authorization', `Bearer ${accessData.accessToken}`)
+    });
+
+    console.log('Request with Authorization Header:', newReq);
 
     return next.handle(newReq);
-
   }
 }

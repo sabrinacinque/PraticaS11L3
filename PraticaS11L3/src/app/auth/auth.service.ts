@@ -1,11 +1,14 @@
+
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { iUser } from '../Models/i-user';
+import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'rxjs';
+
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { iAuthData } from '../Models/i-auth-data';
 import { iAuthResponse } from '../Models/i-auth-response';
+import { iUser } from '../Models/i-user';
+
 
 @Injectable({
   providedIn: 'root'
@@ -108,5 +111,20 @@ export class AuthService {
     this.autoLogout()//Avvio il timer per l'auto logout in modo che l'utente venga estromesso quando la sessione scade
 
   }
+
+  getUsers(): Observable<iUser[]> {
+    const usersUrl = 'http://localhost:3000/users';
+    console.log('Fetching users from:', usersUrl);
+    return this.http.get<iUser[]>(usersUrl).pipe(
+      tap(data => {
+        console.log('Users fetched from server:', data);
+      }),
+      catchError(error => {
+        console.error('Error in getUsers:', error);
+        return throwError(error);
+      })
+    );
+  }
+
 
 }

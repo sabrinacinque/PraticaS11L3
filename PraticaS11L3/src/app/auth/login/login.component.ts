@@ -11,8 +11,8 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
 
   authData:iAuthData = {
-    email: 'forofuw@mailinator.com',
-    password: 'Pa$$w0rd!'
+    email: 'admin@admin.com',
+    password: 'password'
   }
 
   constructor(

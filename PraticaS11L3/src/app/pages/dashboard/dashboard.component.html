@@ -1,4 +1,10 @@
 <h1>Dashboard</h1>
 
+<h3>Benvenuto {{ user.nome }}, {{ user.email }}, {{ user.id }}</h3>
 
-<h3>Benvenuto {{user.nome}}</h3>
+<h3>Questa è la lista degli altri utenti</h3>
+<ul *ngFor="let user of users">
+  <li>{{ user.nome }}</li>
+  <li>{{ user.email }}</li>
+  <li>{{ user.id }}</li>
+</ul>
