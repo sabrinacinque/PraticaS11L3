@@ -18,15 +18,19 @@ export class RegisterComponent {
   constructor(private authSvc: AuthService, private router: Router) {} // Inietta Router
 
   register() {
-    this.authSvc.register(this.newUser).subscribe(() => {
-      alert("Registrazione avvenuta con successo");
+    if (this.registerForm && this.registerForm.valid) {
+      this.authSvc.register(this.newUser).subscribe(() => {
+        alert("Registrazione avvenuta con successo");
 
-      if (this.registerForm) {
-        this.registerForm.resetForm(); // Pulisce il form
-      }
+        if (this.registerForm) {
+          this.registerForm.resetForm(); // Pulisce il form
+        }
 
-      this.router.navigate(['']); // Reindirizza alla home
-    });
+        this.router.navigate(['']); // Reindirizza alla home
+      });
+    } else {
+      alert("Compila tutti i campi correttamente.");
+    }
   }
 
 }

@@ -28,6 +28,18 @@
       "password": "$2a$10$0M596zS1do9y5DsX..1kIeK.eg7sTNs455HQa/Izj81gz0UgWwZki",
       "nome": "admin5",
       "id": 5
+    },
+    {
+      "email": "admin6@admin6.com",
+      "password": "$2a$10$N5tI/jBBPDM49rO9ozTr7OjEl7tiMNmZSFwrti20pZxmYR2KOEwOO",
+      "nome": "",
+      "id": 6
+    },
+    {
+      "email": "admin7@admin7.com",
+      "password": "$2a$10$w54FpfjArQby2SxIlears.79McUep062u1ov2sVFIIQHVoZl11.LS",
+      "nome": "admin7",
+      "id": 7
     }
   ]
 }
